@@ -947,7 +947,7 @@
 			var indentMove = 0;
 			var wantedIndent = 0;
 			//if a margin was added (by e.g. a text-alignment), move the cursor
-			if (line[0][1]["margin-left"] !== undefined && line[0][1]["margin-left"] > 0) {
+			if (typeof line[0] == 'object' && line[0][1]["margin-left"] !== undefined && line[0][1]["margin-left"] > 0) {
 				wantedIndent = this.pdf.internal.getCoordinateString(line[0][1]["margin-left"]);
 				indentMove = wantedIndent - currentIndent;
 				currentIndent = wantedIndent;
@@ -968,7 +968,7 @@
 			//if some watcher function was executed successful, so e.g. margin and widths were changed,
 			//reset line drawing and calculate position and lines again
 			//e.g. to stop text floating around an image
-			if (this.executeWatchFunctions(line[0][1]) && lines.length > 0) {
+			if (typeof line[0] == 'object' && this.executeWatchFunctions(line[0][1]) && lines.length > 0) {
 				var localFragments = [];
 				var localStyles = [];
 				//create fragment array of
